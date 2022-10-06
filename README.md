@@ -11,10 +11,10 @@ Data pipeline to extract logs files from On-Board Units (OBU) to .csv files. Mak
 2. Create the virtual environment according to .yaml file by running `conda env create -n xtraction_scripts --file logs_extract.yaml`. 
 3. Activate the virtual environment by `conda activate xtraction_scripts`.
 4. Run the extraction pipeline  by running `python main.py` in the terminal
-
+___
 **Note**: If you want to avoid issues with folder location clone this repo inside the *platform-tools* folder (see fig below).
 <img src='https://user-images.githubusercontent.com/54486202/194387091-2b75d278-0da0-493f-9cc6-d5f33d0ba15f.png' width=650/>
-
+_______
 The flowchart below sumarizes the pipeline process:
 
 <img src='https://user-images.githubusercontent.com/54486202/194401418-c3778b9c-8b18-412d-8170-6b665e69f4e9.png' width=450/>
