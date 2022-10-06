@@ -1,0 +1,17 @@
+digraph {
+	n_ad6de2f8664d4ac4b062b41fa58e0879 [label="run_logs_pipeline(args)" shape=oval style=filled]
+	n_ff9ab5647511446dac4e087636fd8e45 [label="get: 
+ -data_folder 
+ -parent_path" shape=box style=filled]
+	n_ad6de2f8664d4ac4b062b41fa58e0879 -> n_ff9ab5647511446dac4e087636fd8e45
+	n_2826009efb31498586d53b6b61ec6d49 [label="logs_list_names = get_all_logs_from_path(parent_path, data_folder)" shape=box style=filled]
+	n_ff9ab5647511446dac4e087636fd8e45 -> n_2826009efb31498586d53b6b61ec6d49
+	n_889a928c34854084a267ed849a5e101b [label="for i in logs_list_names:" shape=diamond style=filled]
+	n_2826009efb31498586d53b6b61ec6d49 -> n_889a928c34854084a267ed849a5e101b
+	n_09e8325435a5448cb7fd900bbe8189a1 [label="get_txt_from_logs(i, parent_path, data_folder)" shape=box style=filled]
+	n_889a928c34854084a267ed849a5e101b -> n_09e8325435a5448cb7fd900bbe8189a1 [label=Yes]
+	n_14b4f4cdcd974699ad9946e2a729531e [label="print(File cannot be extracted))" shape=box style=filled]
+	n_889a928c34854084a267ed849a5e101b -> n_14b4f4cdcd974699ad9946e2a729531e [label=No]
+	n_ea04265b01ef4889b4ee440d8c6c35cc [label="convert_txts_to_csv()" shape=box style=filled]
+	n_09e8325435a5448cb7fd900bbe8189a1 -> n_ea04265b01ef4889b4ee440d8c6c35cc
+}
