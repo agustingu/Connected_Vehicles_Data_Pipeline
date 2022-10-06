@@ -3,14 +3,21 @@ import os
 
 from pkg_resources import parse_requirements
 from src.logs_to_txt import get_all_logs_from_path, get_txt_from_logs
-from src.txt_to_csv import convert_txts_to_csv#, get_coordinates_from_strings, get_list_of_values
+from src.txt_to_csv import convert_txts_to_csv
+# from src.visualizer import 
 #-----------------------------------------------------------------------
 
 
 
 def run_logs_pipeline(args):
+    """Initiate the data pipeline extraction according to the folder where
+    the logs are stored
 
-    print('Initiate Logs Extraction')
+    :param args: arguments, for now folder where the logs are located only
+    :type args: args
+    """    
+
+    print('\n       Initiate Logs Extraction \n')
     data_folder = args.data_folder
     parent_path = os.path.split(os.getcwd())[0]
     print(parent_path)
