@@ -12,4 +12,6 @@ Data pipeline to extract logs files from On-Board Units (OBU) to .csv files. Mak
 3. Activate the virtual environment by `conda activate xtraction_scripts`.
 4. Run the extraction pipeline  by running `python main.py` in the terminal
 
-**Note**: If you want to avoid issue with folder location clone this repo inside the *platform-tools* folder
+**Note**: If you want to avoid issue with folder location clone this repo inside the *platform-tools* folder (see fig below).
+<img src='https://user-images.githubusercontent.com/54486202/194387091-2b75d278-0da0-493f-9cc6-d5f33d0ba15f.png' width=650/>
+
