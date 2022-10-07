@@ -1,10 +1,10 @@
-# OBU logs extraction
+### OBU logs extraction
 The extraction of the logs file requires:
 1. The *platform-tools* folder [link 1](https://uflorida-my.sharepoint.com/:u:/g/personal/agustinguerra_ufl_edu/EZCanbKJZ7tBnFc6kjqEPucBDAh4ZDcPSdEsMDekV2bUZw?e=b9cG4e)
 2. Watch the training video [link 2](https://uflorida-my.sharepoint.com/:v:/g/personal/agustinguerra_ufl_edu/Ecu2xO3mWM9DnJiKKHtJ1akBLgOX4V8iCRCYBbKN-cn2zw?e=8w9Leb)
 
 
-# Connected_Vehicles_Data_Pipeline_Extraction
+### Connected_Vehicles_Data_Pipeline_Extraction
 
 Data pipeline to extract logs files from On-Board Units (OBU) to .csv files. Make sure you have installed Anaconda and Python before the following steps:
 1. Clone the repository to your local machine and open the terminal
@@ -18,3 +18,9 @@ _______
 The flowchart below sumarizes the pipeline process:
 
 <img src='https://user-images.githubusercontent.com/54486202/194401418-c3778b9c-8b18-412d-8170-6b665e69f4e9.png' width=450/>
+
+### Input
+<img src='https://user-images.githubusercontent.com/54486202/194584501-39d757c8-0a5a-45f2-ae6f-447e52d2ee06.png' width=350/>
+
+### Output
+<img src='https://user-images.githubusercontent.com/54486202/194584126-5926b87b-ae6c-4c93-91c7-1cab4e498e74.png' width=350/>
