@@ -3,6 +3,12 @@ import os
 import re
 
 
+def str_to_bool(any_string):
+    if any_string == "True" or any_string == "true":
+        return True
+    else:
+        return False
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 def get_all_logs_from_path(parent_path, data_path):
     """Get all logs names in a directory
@@ -23,7 +29,7 @@ def get_all_logs_from_path(parent_path, data_path):
         
         if j[:3] == 'log':
             
-            print('adding file name {} '.format(j))
+            # print('adding file name {} '.format(j))
             
             logs_list_names.append(j)
             
