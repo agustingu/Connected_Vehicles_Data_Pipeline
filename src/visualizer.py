@@ -1,6 +1,8 @@
+from cProfile import label
 import pandas as pd
 import matplotlib.pyplot as plt
 import folium
+import utm
 from src.logs_to_txt import get_all_logs_from_path
 
 class Visualizer:
@@ -27,6 +29,8 @@ class Visualizer:
         lat_range, long_range  = main_args.lat_range,  main_args.long_range
 
         for csv in all_csv:
+            # print('eval csv ', csv)
+            # import pdb; pdb.set_trace()
             csv_path = parent_path + data_folder + csv
 
             df_ = pd.read_csv(csv_path)
@@ -43,10 +47,77 @@ class Visualizer:
             else:
                 print('{} is OUT of the define polygon'.format(csv))
 
-            #TODO: save all path to txt for the record or at least the names
 
-            return files_with_coord_in_gnv
+        return files_with_coord_in_gnv
 
 
-            #TODO: Plot the valid files only
-    
+  
+    def export_html_valid_logs_on_map(self, valid_files):
+        """Export html files that are within the define polygon in main args
+
+        :param valid_files: files that are within the polygon
+        :type valid_files: list
+        """        
+
+        # create map
+        gainesville = folium.Map(zoom_start=13, location=[29.63693, -82.349996],
+                                zoom_control=False,
+                                scrollWheelZoom=False,
+                                dragging=False)
+
+
+        for f in valid_files:
+
+            # read csv use pandas. Later use numpy for efficiency
+            df = pd.read_csv(f)
+            df.longitude = df.longitude/10000000
+            df.latitude = df.latitude/10000000
+
+            # plot coordinates on html file and save it in the html out folder
+            for _, indx in df.iterrows():
+
+                folium.Marker(location=[indx["latitude"], indx["longitude"]]).add_to(gainesville)
+
+            gainesville.save(f[:92] + 'html_out\\' + f[100:] + '.html')
+
+            
+
+
+    def generate_scatter_plots(self, valid_files):
+        """Generate scatter plot of valid files. First transform coordinates to utm,
+        the plotting all in one figure  
+
+        :param valid_files: files that are within the design polygon    
+        :type valid_files: list of paths
+        """  
+        # instantiate figure object      
+        fig, axes = plt.subplots()
+
+        # loop over valid files
+        for f in valid_files:
+
+            # read and apply scalling factors to data points
+            df = pd.read_csv(f)
+            df.longitude = df.longitude/10000000
+            df.latitude = df.latitude/10000000
+
+            # initiate empty lists
+            x = []
+            y = []
+
+            # convert each value to later appending to each utm coordinate list (x,y)
+            for _, indx in df.iterrows():
+
+                u = utm.from_latlon(indx["latitude"], indx["longitude"])
+                # import pdb; pdb.set_trace()
+                y.append(u[0])
+                x.append(u[1])
+
+            
+
+            axes.scatter(x, y, label=str(f[100:]))
+
+        axes.set_title('Scatter plot by log file on utm system')   
+        axes.legend(loc=(1.04, 0))
+        
+        fig.savefig('scatter_by_log', bbox_inches='tight')

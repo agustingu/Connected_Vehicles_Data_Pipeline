@@ -3,6 +3,7 @@ name: xtraction_scripts
 dependencies:
 - matplotlib
 - pandas
+- utm
 - pip
 - pip:
   - IPython
