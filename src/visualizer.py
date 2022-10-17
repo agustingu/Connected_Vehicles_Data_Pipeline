@@ -83,9 +83,9 @@ class Visualizer:
             
 
 
-    def generate_scatter_plots(self, valid_files):
+    def generate_scatter_plots(self, valid_files, long_range, lat_range, main_args):
         """Generate scatter plot of valid files. First transform coordinates to utm,
-        the plotting all in one figure  
+        then plots all in one figure  
 
         :param valid_files: files that are within the design polygon    
         :type valid_files: list of paths
@@ -109,15 +109,26 @@ class Visualizer:
             for _, indx in df.iterrows():
 
                 u = utm.from_latlon(indx["latitude"], indx["longitude"])
-                # import pdb; pdb.set_trace()
-                y.append(u[0])
-                x.append(u[1])
+                
+                x.append(u[0])
+                y.append(u[1])
 
             
 
-            axes.scatter(x, y, label=str(f[100:]))
 
-        axes.set_title('Scatter plot by log file on utm system')   
+            axes.scatter(x, y, label=str(f[100:]))
+        # import pdb; pdb.set_trace()
+        y0, y1 = lat_range
+        x0, x1 = long_range
+
+        x0, y0 = utm.from_latlon(y0, x0)[0], utm.from_latlon(y0, x0)[1]
+        x1, y1 = utm.from_latlon(y1, x1)[0], utm.from_latlon(y1, x1)[1]
+
+
+        axes.scatter(x0, y0, label= 'lbl')
+        axes.scatter(x1, y1, label= 'ubr')
+        
+        axes.set_title('Scatter plot by log file on utm system | ' + main_args.study_area)   
         axes.legend(loc=(1.04, 0))
         
         fig.savefig('scatter_by_log', bbox_inches='tight')

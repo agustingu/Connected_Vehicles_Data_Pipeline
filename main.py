@@ -85,7 +85,7 @@ def run_logs_pipeline(args):
         vis = Visualizer()
         valid_files = vis.identify_csv_within_gnv(parent_path, main_args)
 
-        vis.generate_scatter_plots(valid_files)
+        vis.generate_scatter_plots(valid_files, long_range, lat_range, main_args)
 
 if __name__ == "__main__":
 
@@ -97,13 +97,13 @@ if __name__ == "__main__":
     parser.add_argument('--extract_logs', type=str_to_bool, default='False',
                         help='perform extraction of logs to csv')
 
-    parser.add_argument('--generate_htmls', type=str_to_bool, default='True',
+    parser.add_argument('--generate_htmls', type=str_to_bool, default='False',
                         help='genrates plots from CSV files with reasonable coordinates')
     
     parser.add_argument('--scatter_on', type=str_to_bool, default='True',
                         help='generate scatter plot by file name')
     
-    parser.add_argument('--study_area', type=str, default='Archer',
+    parser.add_argument('--study_area', type=str, default='Trapezium',
                         help='Define study area, Trapezium or by road')
 
     parser.add_argument('--long_range', type=tuple, default=(0, 0), 
